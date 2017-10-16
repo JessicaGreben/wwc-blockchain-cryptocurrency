@@ -8,6 +8,7 @@ For this exercise we will be implementing a Blockchain from scratch. We will bui
 
 The following exercise assumes you have a text editor installed and are able to write code in a language of your choice (the solutions are written in Python).  Feel free to pair with others while working through these exercises.
 
+
 ### Step 1 - What is a Block in a Blockchain?
 
 In the presentation we learn that a Blockchain is a database, which is just a grouping of data organized in a particular way.  A blockchain database organizes its data in blocks.  
@@ -22,8 +23,7 @@ A Block should have the following attributes:
 * pointer to the previous block
 * transactional data
 
-A Block should be able to perform the following actions:
-* hash itself
+Later in Step 4 we will implement a hash function to hash the block.
 
 
 ### Step 2 - Lets Chain the Blocks Together
@@ -43,9 +43,21 @@ A Blockchain should be able to perform the following functions:
 
 ### Step 3 - Validate a Block
 
+#### Task: Validate a block
+
 A Blockchain should also have a mechanism to confirm a block is valid.  A block is valid when these criteria are met:
 * the previous hash attribute of the current block matches the current hash of the previous block
 * the index of the previous block is one less than the index of the current block
+
+### Step 4 - What is a hash function?
+
+A [hash function](https://en.wikipedia.org/wiki/Hash_function) is a way to turn any amount of data or any size data into a constant size. The values returned by a hash function are called **hash values**, **hash codes**, **digests**, or **simply hashes**. One example of a use case is a data structure called a hash table, used in computer software for rapid data lookup. 
+
+Hash functions are used all over in Blockchains. One place is data on the blockchain is “hashed” in each block. This allows a quick, secure mechanism to confirm the integrity of the Blockchain data. 
+
+#### Task: Implement a simple hash function
+
+Write a method for a simple hashing function.
 
 ## Beyond the workshop:
 
