@@ -43,7 +43,7 @@ A Blockchain should be able to perform the following functions:
 
 ### Step 3 - Validate a Block
 
-#### Task: Validate a block
+#### Task: Implement a `validate_block` method in the `Blockchain` class.
 
 A Blockchain should also have a mechanism to confirm a block is valid.  A block is valid when these criteria are met:
 * the previous hash attribute of the current block matches the current hash of the previous block
