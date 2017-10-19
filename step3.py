@@ -1,26 +1,26 @@
-# Task: Validate a block
+# Task: Implement a `Blockchain` class.
 
-# A Blockchain should also have a mechanism to confirm a block is valid.  A block is valid when these criteria are met:
-# * the previous hash attribute of the current block matches the current hash of the previous block
-# * the index of the previous block is one less than the index of the current block
+# A Blockchain should have the following attributes:
+# - a data structure to store blocks 
+#     - along with a single genesis block
+
+# A genesis block is the first block of a block chain. The genesis block is typically hardcoded into the blockchain.
+
+# A Blockchain should be able to perform the following functions:
+# - create a new block and add it to the blocks attribute
+# - get the most recent block in from the blocks attribute
+
+
+class Block(object):
+
+    def simple_hash_block():
 
 
 class Blockchain(object):
-    """
-    """
-    def __init__(self, blocks=[]):
-        """
-        """
-        self.blocks = blocks
-
-    def create_block(self):
-        """
-        """
+    def __init__(self):
 
     def get_recent_block(self):
-        """
-        """
 
-    def is_block_valid(self, block):
-        """
-        """
+    def create_block(self):
+
+    def add_block_to_chain(self):

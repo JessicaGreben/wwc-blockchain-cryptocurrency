@@ -1,0 +1,18 @@
+class Block(object):
+    def __init__(self, thing):
+        self.thing = thing
+        self.poop()
+
+    def poop(self):
+        print 'self.thing'
+
+
+
+class MyClass():
+  def __init__(self, filename):
+      self.filename = filename 
+      self.parse_file()
+
+  def parse_file(self):
+      #do some parsing
+      print 't'
