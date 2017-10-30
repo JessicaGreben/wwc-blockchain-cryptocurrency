@@ -1,18 +1,14 @@
-# Task: Implement a `Block` class. 
+# Task: Implement a `Block` class.
 
-# A Block should have the following attributes:
-# - timestamp
-# - index of position in the blockchain
-# - pointer to the previous block
-# - tTask: Implement a `Block` class. 
+# Implement a `Block` class with the following attributes:
+# * timestamp
+# * hash of the previous block
+# * transactional data
 
 
 class Block(object):
-    """
-    Stores data and metadata about transactions.
-    """
-    def __init__(self, timestamp, index, previous_block, data):
+    def __init__(self, timestamp, previous_hash, data):
         self.timestamp = timestamp
-        self.index = index
-        self.previous_block = previous_block
+        self.previous_hash = previous_hash
         self.data = data
+    

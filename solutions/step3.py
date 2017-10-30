@@ -1,48 +1,21 @@
-# Task: Implement a simple hash function
-
-# Write a method called `simple_hash` that accepts a Block object as a parameter.  Remember the current block
-
-# The hash should perform the following steps:
-# - convert each character of the string into its ascii value
-# - sum up these values
-# - perform the modulus operation like so: sum % 1000
-# - return that value
-
-# Once the simple hash function is implemented then update the existing code to do the following:
-# - in the Block class, instead of a previous_block attribute, change it to previous_hash attribute so that this pointer is actually a hash pointer now
-# - in the initialzation of the Block class add an instantiation of the simple
-#   hash method so that we hash the contents of the block and store that data on the block itself.
-# - in the Blockchain.create_block method, update previous_block to previous_hash
-
+# Task: Implement a `validate_block` method in the `Blockchain` class.
+# A Blockchain should also have a mechanism to confirm a block is valid.  Implement a validation function that check that a block is valid.
+# A block is valid when:
+# * the previous hash attribute of the current block matches the current hash of the previous block
 
 from datetime import datetime
+
+import hashlib
 
 
 class Block(object):
     """
     Stores data and metadata about transactions.
     """
-    def __init__(self, timestamp, index, previous_hash, data):
+    def __init__(self, timestamp, previous_block, data):
         self.timestamp = timestamp
-        self.index = index
+        self.previous_block = previous_block
         self.data = data
-        self.previous_hash = previous_hash
-        self.simple_hash_block()
-
-    def simple_hash_block(self):
-        """
-        Format the block data into a unified size.
-        Adds a current_hash attribute to the Block.
-        """
-        summed = 0
-        hash_content = str(self.index) + str(self.timestamp) + str(self.previous_hash) + str(self.data)
-
-        for char in list(hash_content):
-            summed += ord(char)
-
-        current_hash = summed % 1000
-        self.current_hash = current_hash
-        return current_hash
 
 
 class Blockchain(object):
@@ -67,15 +40,36 @@ class Blockchain(object):
         - data can be any type of data. In the case of Bitcoin, data is transactional data.
         """
         timestamp = datetime.utcnow()
-        index = len(self.blocks)
-        previous_hash = get_recent_block().current_hash
+        previous_block = get_recent_block()
+        previous_block_hash = self.hash_block(previous_block)
         data = data
-        new_block = Block(timestamp, index, previous_hash, data)
+        new_block = Block(timestamp, previous_block_hash, data)
         return new_block
 
     def add_block_to_chain(self, new_block):
         """
         Add the new block to the existing blocks data structure.
         """
-        blocks.append(new_block)
+        previous_block = get_recent_block()
+        if self.is_block_valid(new_block, previous_block):
+            blocks.append(new_block)
         return blocks
+
+    def hash_block(block):
+        """
+        Hash the contents of the current block with the 
+        previous block's hash.
+        """
+        hash_content = str(block.timestamp) + block.previous_hash + block.data
+        return hashlib.sha256(hash_content).hexdigest()
+
+    def is_block_valid(self, current_block, previous_block):
+        """
+        Confirm the block is valid.
+        A block is valid when:
+        - the previous_hash attribute matches the hash of the actual previous block
+        """
+        if current_block.previous_hash != previous_block.current_hash:
+            print 'Invalid previous hash'
+            return False
+        return True
