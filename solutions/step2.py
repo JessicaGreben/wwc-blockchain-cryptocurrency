@@ -66,21 +66,3 @@ class Blockchain(object):
         """
         hash_content = str(block.timestamp) + block.previous_hash + block.data
         return hashlib.sha256(hash_content).hexdigest()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
