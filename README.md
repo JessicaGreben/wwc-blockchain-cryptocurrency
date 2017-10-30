@@ -6,7 +6,7 @@ For this exercise we will be implementing a simple Blockchain from scratch. We w
 
 ## Setup
 
-The following exercise assumes you have a text editor installed and are able to write code in a language of your choice, but the solutions are written in Python.  Feel free to pair with others while working through this exercises.
+The following exercise assumes you have a text editor installed and are able to write code in a language of your choice, but the solutions are written in Python and you can reference this [blog on creating a Blockchain](https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54) with a similar exercise that has solutions written in JavaScript..  Feel free to pair with others while working through this exercises.
 
 
 ### Step 1 - What is a Block in a Blockchain?
@@ -48,6 +48,8 @@ In the hash function provided, you can see that we are hashing the previous bloc
 ### Step 3 - Validate a Block
 
 #### Task: Implement a `validate_block` method in the `Blockchain` class.
+
+When we add a new block to the block chain, check to make sure that this previous block hash still matches the current block's attribute that stores the hash of the previous block.
 
 A Blockchain should also have a mechanism to confirm a block is valid.  Implement a validation function that check that a block is valid.
 A block is valid when:

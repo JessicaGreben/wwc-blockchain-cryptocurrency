@@ -1,8 +1,7 @@
 # Task: Implement a `Blockchain` class.
 
-# A Blockchain should have the following attributes:
-# * a data structure to store blocks 
-# * the first block should be hardcoded, its called the genesis block
+# A Blockchain should have the following attribute:
+# * a data structure to store the blocks with the first block already created
 
 # A Blockchain should be able to perform the following functions:
 # * create a new block and add it to the blocks attribute

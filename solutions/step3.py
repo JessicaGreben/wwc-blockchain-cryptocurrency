@@ -12,9 +12,9 @@ class Block(object):
     """
     Stores data and metadata about transactions.
     """
-    def __init__(self, timestamp, previous_block, data):
+    def __init__(self, timestamp, previous_block_hash, data):
         self.timestamp = timestamp
-        self.previous_block = previous_block
+        self.previous_block_hash = previous_block_hash
         self.data = data
 
 
@@ -40,7 +40,7 @@ class Blockchain(object):
         - data can be any type of data. In the case of Bitcoin, data is transactional data.
         """
         timestamp = datetime.utcnow()
-        previous_block = get_recent_block()
+        previous_block = self.get_recent_block()
         previous_block_hash = self.hash_block(previous_block)
         data = data
         new_block = Block(timestamp, previous_block_hash, data)
@@ -50,17 +50,18 @@ class Blockchain(object):
         """
         Add the new block to the existing blocks data structure.
         """
-        previous_block = get_recent_block()
+        previous_block = self.get_recent_block()
         if self.is_block_valid(new_block, previous_block):
-            blocks.append(new_block)
-        return blocks
+            self.blocks.append(new_block)
+        return self.blocks
 
-    def hash_block(block):
+    def hash_block(self, block):
         """
         Hash the contents of the current block with the 
         previous block's hash.
         """
-        hash_content = str(block.timestamp) + block.previous_hash + block.data
+        hash_content = str(block.timestamp) + block.previous_block_hash + str(block.data)
+        
         return hashlib.sha256(hash_content).hexdigest()
 
     def is_block_valid(self, current_block, previous_block):
@@ -69,7 +70,8 @@ class Blockchain(object):
         A block is valid when:
         - the previous_hash attribute matches the hash of the actual previous block
         """
-        if current_block.previous_hash != previous_block.current_hash:
+        hash_previous_block = self.hash_block(previous_block)
+        if current_block.previous_block_hash != hash_previous_block:
             print 'Invalid previous hash'
             return False
         return True
